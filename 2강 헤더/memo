@@ -1,0 +1,15 @@
+헤더 부분을 만들어보자
+
+em 요소는 강조를 나타냅니다. 이 요소는 주관적인 강조를 나타낼 뿐, 중요성을 나타내지는 않습니다.
+strong 요소는 중요한 내용을 정의합니다
+
+
+가로로 정렬할때
+
+display:inline 이나
+float:left를 많이쓰는데 여백없이 라인이 딱딱 붙어야해서 
+display:inline은 폰트값이 있기때문에 약간의 여백이 생김 
+
+
+인라인 태그들은 display:inline-block,block을 주어서 padding 값을 먹게해야한다.
+
