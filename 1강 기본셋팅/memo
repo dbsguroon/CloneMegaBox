@@ -1,0 +1,106 @@
+<meta name="viewport: content="속성">
+
+피시화면의 비율을 줄여 모바일 화면에서 보일수 있도록 하는 기술
+width = viewport의 가로크기를 조정합니다.
+height = 초기배율을 설정합니다. 기본값은 1입니다.
+minimum-scale = viewport의 최소배율값 기본값은 0.25입니다.
+maximum-scale = viewport의 최대배율값 기본값은 1.6입니다.
+user-scalable = 사용자의 확대/축소 기능을 설정 기본값은 yes입니다.
+
+반응형웹페이지를 제작하려면 viewport를 설정해야 합니다.
+<meta name="viewport"
+      content="user-scalable=no,(화면확대금지)
+      initial-scale=1.0,(초기배율설정)
+      maximum-scale=1.0,(최대배율설정)
+      minimum-sclae=1.0,(최소배율설정)
+      width=device-width",(디바이스 가로값 설정)
+
+-----------------------------------------------------------------
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+익스플로러 8이 추가되면서 호환성 버튼 기능이 추가되었습니다. 
+즉 어떤 렌더링 엔진을 사용할것인지를 선택하게 하는 용도의 버튼입니다.
+구익스폴로러에서도 저코드를 써주면 ie=edge버전으로 해석해라라는뜻임
+
+-----------------------------------------------------------------
+
+파비콘 : favorite + icon을 합친말로 인터넷 웹브라우저 주소창에 표시되는 웹페이지를 대표하는 아이콘이다.
+이렇게 쓰면된다
+<link rel="shortcut icon" href="favicon.ico"/>
+사이즈는 16*16 , 32*32 , 48*48 , 64*64 
+.ico .png .jpg .gif 파일을 지원합니다.
+
+브라우저마다 지원여부는 다릅니다.
+.ico 파일은 모든 브라우저에서 지원합니다.
+
+추가적으로 모바일용 아이콘은 이렇게 씁니다.
+<link rel="apple-touch-icon-precomposed" href="asset/icon/favicon.png"/>
+
+------------------------------------------------------------------------
+
+<!-- HTLM5shiv ie6~8 -->
+<!--[if lt IE 9]> 
+    <script src="assets/js/html5shiv.min.js"></script>
+    <script type="text/javascript">
+        alert("현재 브라우저는 지원하지 않습니다. 크롬 브라우저를 추천합니다.!");
+    </script>
+<![endif]-->
+
+HTML5shiv : 구 익스플로러에서 시멘틱 태그를 인식시켜주는 라이브러리입니다.
+ex) article ,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary
+
+조건부주석
+조건부주석은 익스플로러에서만 작동하는 조건문으로
+이를 이용하여 IE 브라우저별로 컨트롤 할수 있습니다.
+
+<!--[if IE 6] <html class="ie6" lang="ko"><![endif]-->
+<!--[if IE 7] <html class="ie7" lang="ko"><![endif]-->
+<!--[if IE 8] <html class="ie8" lang="ko"><![endif]-->
+<!--[if IE 9] <html class="ie9" lang="ko"><![endif]-->
+
+조건부주석은 주석이아니다.
+조건부주석은 익스플로러에서만 사용
+조건부주석은 익스플로 호환성 맞추기 위해 사용
+스크립트를 이용하여 조건부 주석을 만들수 있다.
+
+조건부기호
+
+[if lt IE9] ie9보다 작다면 (lt:작다)
+[if lte IE9] ie9보다 작거나 같다면 (lte:작거나 같다)
+[if gt IE9] ie9보다 크다 (gt:크다)
+[if gte IE9] ie9보다 크거나 같다면 (gte :크거나 같다)
+[if !IE] ie가 아니면
+
+--------------------------------------------------------------------------------------------
+Mordernizer-custom
+: 사용자 브라우저의 HTML5,CSS3 기능들을 감지하고
+지원여부를 판별하는 javascript라이브러리입니다.
+
+스크립트로도 표현이 가능
+
+if(Mordernizer.canvas){
+    //canvas를 지원할 경우
+}else{
+    //canvas를 지원하지 않을경우
+}
+
+<html lang="ko" class="no-cookies json queryselector svg atobbtoa atob-btoa 
+classlist cssgradients no-touchevents displaytable display-table nthchild backgroundsize 
+bgsizecover boxshadow boxsizing">
+
+파일을 연동하면 HTML태그에 사용 가능한 기능들이 표시됨
+지원하지 않은 기능은 no가 표시됨
+
+html.touchevents{
+    touch이벤트가 적용되는 경우
+}
+html.no-touchevents{
+    touch이벤트가 적용되지 않는 경우
+}
+
+- Mordernizer는 브라우저 호환성 유지를 위한 브라우저 기능을 판별합니다.
+- 자바스크립트는 navigator.userAgent를 통해 브라우저를 판별합니다.
+- HTML 태그를 통해 지원여부를 클래스 값으로 알려줍니다.
+
+-----------------------------------------------------------------------
+ie.checker : 익스플로러 체크해주는것 (IE 6,7,8,9,10체크)
