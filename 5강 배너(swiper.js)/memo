@@ -1,0 +1,44 @@
+background-position:
+
+속성값:
+
+left top: 왼쪽상단
+left center:왼쪽 중앙
+left bottom: 왼쪽 맨아래
+right top:오른쪽 상단
+right center:오른쪽 중앙
+right bottom: 오른쪽 맨아래
+center top:가운데 상단
+center center:정가운데
+center bottom:가운데 맨아래
+
+ X% Y% : x는 가로위치 y는 세로위치 입니다.
+
+ 0% 0% 는 left top과 같으며 100% 100% right top 과 같음
+ 한가지만 지정하면 나머지는 50%
+
+ px , em 등과같은 단위와 섞어서 지정도 가능
+
+ ex) background-position:right top;
+     background-position:20% 80%;
+     background-position:20px 80px;
+
+
+------------------------------------------------------------------------------------------
+
+background-size
+
+속성값:
+
+auto : 기본값으로 배경 이미지 원래의 width, height 그대로 표시
+
+길이 : px,cm 등의 단위로 배경이미지의 width와 height 설정
+       첫번째 값은 width, 두번쨰 값은 height / 한가지 값만 지정하면 나머지는 자동으로 auto
+
+% : 너비와 높이를 부모요소에 비례한 %값으로 지정
+    첫번째는 width 두번쨰는 height 한가지만 지정하면 나머지는 auto
+
+cover : 배경지역이 배경이미지로 완전히 덮이도록 이미지를 가능한 한 크게해서 표시
+        때문에 이미지의 일부분이 보이지 않을수 있음
+
+contain : 너비와 높이가 내용안쪽에 알맞은 방식으로 이미지를 가장크게 조절함
