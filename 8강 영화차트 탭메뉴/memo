@@ -1,0 +1,62 @@
+탭메뉴 만들기
+
+박스오피스 클릭하면 그에맞는 content 보여주고
+최신개봉작 클릭하면 그에맞는 content 보여주고
+상영예정작 클릭하면 그에맞는 content 보여주고
+큐레이션 클릭하면 그에맞는 content 보여주는 원리임 
+
+.eq()	선택한 요소 중에서 전달받은 인덱스에 해당하는 요소를 선택함.
+- > 인덱스는 0부터시작
+
+----------------------------------------------------------------------
+
+//영화차트 탭메뉴
+var movBtn = $(".movie_title>ul>li"); // 박스오피스 ,최신개봉작 , 상영예정작 ,큐레이션  li 버튼 모두선택해서 변수에담아줌
+var movCont = $(".movie_chart>div"); // 차트 컨텐츠 4개선택
+movCont.hide().eq(0).show(); //컨텐츠들을 모두 숨기고 그중에 첫번째 컨텐츠만 보여줌
+movBtn.click(function (e) { // 버튼클릭했을때 함수실행
+  e.preventDefault(); // 이벤트가 발생하는것을 막아줌
+  var target = $(this); // 여기서 this의 의미는 사용자가 클릭한 것을 target에저장함 (예를들어 박스오피스를 클릭하면 박스오피스가 타겟에 저장됨)
+  var index = target.index(); // 우리는 누굴 클릭했는지 알수없으니 target 변수에 인덱스를 매겨서 index라는 변수에 저장 
+  movBtn.removeClass("active"); // 버튼을 눌러서 활성화되어있는 active를 제거해줌
+  target.addClass("active"); // 내가 클릭한 target에 active class를 활성화시켜줌
+  movCont.css("display", "none"); // 클릭했을때 컨텐츠를 모두 안보이게해줌
+  movCont.eq(index).css("display", "block"); // 내가 클릭한 컨텐츠의 index만 보여주게해주는코드
+  });
+
+-------------------------------------------------------------------------------------------
+
+box-shadow 와 text-shadow
+
+box-shadow : 박스의 그림자를 넣을수 있음
+text-shadow : 텍스트의 그림자를 넣을수 있음
+
+box-shadow
+
+/* offset-x | offset-y | blur-radius | spread-radius | color */
+
+inset : 내부그림자
+
+<offset-x> <offset-y> : x는 수평거리 y는 수직거리 에 그림자를줌
+ x에서 음수값을주면 왼쪽으로  y에서 음수값을 주면 위쪽으로 표시됨
+
+<blur-radius> : 크면 클 수록 그림자 테두리가 흐려지므로 크기는 더 커지고 색은 더 밝아집니다. 
+음수 값은 사용할 수 없습니다
+
+<spread-radius> : 양수 값은 그림자가 더 커지고 확산하며, 음수 값은 그림자가 줄어듭니다.
+
+<color> : 색을 지정
+
+ex) box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+              offset-x , offset-y , blur-radius ,color
+
+-----------------------
+
+text-shadow:
+
+/* offset-x | offset-y | blur-radius | color */
+
+box-shadow와 속성내용은 동일
+
+ex) text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);
+               offset-x ,offset-y, blur-radius ,color
