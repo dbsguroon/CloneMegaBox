@@ -1,0 +1,44 @@
+BOX SIZING: 웹페이지에서 요소를 구성하는 가장 기본적인 것은 영역입니다.
+모든요소는 margin , border , padding 값을 가지고 있습니다.
+
+그래서 요소의 가로값과 세로값은
+width  = margin + padding + border 
+height = margin +padding + border 이렇게 됩니다.
+
+width 값을 50이라고 가정하고
+마진 20px , 패딩 10px ,  보더 1px 이면
+
+width + (20+10+1) * 2 = 112px 이다.
+
+하지만 box-sizing을 border-box로 한다면
+
+width 값을 50이라고 가정하고
+마진 20px , 패딩 10px , 보더 1px이면
+
+즉  border-box값이 50이되는것이고
+양옆에 margin 20*2 를 더하면 총  width 값이 90이된다.
+
+
+border-box:
+
+content+padding+border 합친것
+
+
+-------------------------------------------------------
+
+다른예를하나더 들자면
+
+width: 49%;
+padding: 15px;
+box-sizing: border-box;
+margin-right: 2%;
+
+
+width가 총100%로라고 가정할때 50%공간을 차지하는 박스 2개를 놓는다고 생각해보자
+참고로 두개의 박스중 한박스는 margin-right:0 으로 해주었다.
+위코드를 보면 width를 49%로 주었다 왜 49%로를 주었을까?
+
+천천히 살펴보면 margin 값은 border-box에 포함되질못한다.
+그렇기 때문에  총 100%-2%(마진right값) = 98%로가 된다
+98%/2 로나누어보면 한박스당 49%씩 차지해야하는것을 알수가 있다.
+
