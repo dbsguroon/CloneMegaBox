@@ -1,0 +1,49 @@
+슬라이드를 반응형으로 작업하고싶을때
+
+swiper에 breakpoint를 이용한다
+
+breakpoints: {
+          // when window width is >= 600px
+          600: {
+              slidesPerView: 1.4,
+              spaceBetween: 24
+          },
+          // when window width is >= 768px
+          768: {
+              slidesPerView: 2,
+              spaceBetween: 24
+          },
+          // when window width is >= 960px
+          960: {
+              slidesPerView: 3,
+              spaceBetween: 24
+          }
+      }
+
+---------------------------------------------------
+
+반응형을 만들기 위해서는 px을 쓰게되면 구조가꺠짐
+
+width를 px대신 % 로 써주어야함
+
+width가 px값으로 되어있을떄
+없애줄라면 width:auto를 주면된다.
+
+------------------------------------------------------
+
+가상요소
+
+:before  
+
+요소의 시작부분에 콘텐츠 추가
+
+:after 
+
+요소의 끝부분에 콘텐츠 추가
+
+--------------------------------------------------------
+
+z-index를 쓰기위해서는 postion 값을 써주어야한다.
+
+z-index는 형제끼리 비교가능
+
