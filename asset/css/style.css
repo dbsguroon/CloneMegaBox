@@ -18,6 +18,12 @@
     position: relative;
 }
 
+#movie {
+    background-color: #f8f8f8;
+}
+
+#event {}
+
 
 /* 가운데영역 */
 .container {
@@ -440,6 +446,44 @@
     margin-right: 0;
 }
 
+/* 이벤트 영역 */
+.event {
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+.event h2 {
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.event img {
+    display: block;
+}
+
+.event .event_left {
+    float: left;
+    width: 66%;
+    margin-right: 2%;
+    overflow: hidden;
+}
+
+.event .event_left .event_box1 {
+    float: left;
+    width: 50%;
+}
+
+.event .event_left .event_box2 {
+    float: left;
+    width: 50%;
+}
+
+.event .event_right {
+    float: left;
+    width: 32%;
+}
+
 
 /* 미디어쿼리 */
 
@@ -560,9 +604,13 @@
         display: none;
     }
 
+    #movie {
+        background: none;
+    }
+
     #movie .row {
         background: #fff;
-        margin: 24px;
+        margin: 24px 24px 0 24px;
         padding: 24px;
     }
 
@@ -629,6 +677,29 @@
     .movie_title li.active a {
         background: none;
         color: #666;
+    }
+
+    #event .row {
+        padding: 24px;
+    }
+
+    .event {
+        background: #fff;
+        padding: 24px;
+    }
+
+    .event h2 {
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    .event .event_left {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .event .event_right {
+        display: none;
     }
 }
 
@@ -776,6 +847,19 @@
 
     .movie_chart>div>div>div .infor .infor_btn a:last-child {
         display: none;
+    }
+
+    #event .row {
+        padding: 0 8px;
+    }
+
+    .event {
+        padding: 16px;
+    }
+
+    .event h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
     }
 
 }
