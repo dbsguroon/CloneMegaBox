@@ -30,6 +30,8 @@
     background-size: cover;
 }
 
+#new {}
+
 
 /* 가운데영역 */
 .container {
@@ -497,6 +499,10 @@
     color: #bb9b51;
 }
 
+.opening h2 {
+    margin-bottom: 15px;
+}
+
 .opening h2 .grand {
     display: inline-block;
     width: 330px;
@@ -530,12 +536,82 @@
     margin: 4% 3% 0 3%;
     border: 1px solid #3e4b44;
     box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .opening .open_box>div h3 {
     font-size: 19px;
     border: 1px solid #6e3abb;
     color: #fff;
+    display: inline-block;
+    padding: 10px 20px;
+    background: #551e9b;
+    margin-top: -24px;
+    font-weight: 300;
+}
+
+.opening .open_box>div p {
+    font-size: 23px;
+    color: #fff;
+    font-weight: 700;
+    padding: 6% 0 10% 0;
+}
+
+.opening .open_box>div p em {
+    display: block;
+    font-weight: bold;
+}
+
+.opening .open_box>div p strong {
+    display: block;
+    font-weight: bold;
+}
+
+/* 새로운 영화 */
+.new {
+    padding: 100px 0;
+    position: relative;
+}
+
+.new h2 {
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.new .new_left {
+    height: 500px;
+    background: #ccc url(../img/new01.jpg) center center;
+    background-size: cover;
+    margin-right: 423px;
+    position: relative;
+}
+
+.new .new_left .play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 120px;
+    height: 120px;
+    transform: translate(-50%, -50%);
+}
+
+.new .new_left .play .st0 {
+    fill: #fff;
+    opacity: 0.3;
+}
+
+.new .new_left .play .st1 {
+    fill: #fff;
+}
+
+.new .new_right {
+    width: 400px;
+    height: 500px;
+    background: #f0f0f0;
+    position: absolute;
+    right: 0;
+    top: 165px;
 }
 
 
@@ -633,6 +709,19 @@
     .movie_title li {
         width: 25%;
         box-sizing: border-box;
+    }
+
+    .opening {
+        padding: 50px 0;
+    }
+
+    .opening .open_box {
+        display: none;
+    }
+
+    .opening .desc {
+        font-size: 25px;
+        background: none;
     }
 
 }
@@ -754,6 +843,10 @@
 
     .event .event_right {
         display: none;
+    }
+
+    #opening {
+        margin: 0;
     }
 }
 
@@ -914,6 +1007,35 @@
     .event h2 {
         font-size: 18px;
         margin-bottom: 10px;
+    }
+
+    #opening {
+        margin: 8px 0;
+    }
+
+    .opening {
+        padding: 20px 0;
+    }
+
+    .opening h2 {
+        margin-bottom: 10px;
+    }
+
+    .opening h2 .grand {
+        background-size: 300px;
+        background-position: 0 -105px;
+        width: 197px;
+        height: 24px;
+    }
+
+    .opening .date {
+        display: none;
+    }
+
+    .opening .desc {
+        font-size: 16px;
+        font-weight: 400;
+        padding-bottom: 0;
     }
 
 }
