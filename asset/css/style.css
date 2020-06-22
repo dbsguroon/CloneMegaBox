@@ -845,6 +845,46 @@
     color: #777;
 }
 
+/* 카드할인 */
+
+.card {
+    padding: 17px;
+}
+
+.card li {
+    border: 1px solid #d7d7d7;
+    padding: 17px;
+    margin-bottom: 17px;
+    position: relative;
+    min-height: 102px;
+    box-sizing: border-box;
+}
+
+.card li span {
+    position: absolute;
+    left: 17px;
+    top: 17px;
+}
+
+.card li span img {
+    width: 105px;
+}
+
+.card li strong {
+    display: block;
+    padding-left: 120px;
+    color: #777;
+    font-size: 18px;
+}
+
+.card li em {
+    display: block;
+    padding-left: 120px;
+    color: #777;
+    font-size: 14px;
+    font-weight: 300;
+}
+
 /* 미디어쿼리 */
 
 @media (max-width:1290px) {
