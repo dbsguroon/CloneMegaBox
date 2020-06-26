@@ -1,5 +1,28 @@
 @charset "utf-8";
 
+
+/* 스킵 메뉴 */
+#skip {
+    position: relative;
+}
+
+#skip a {
+    position: absolute;
+    left: 0;
+    top: -40px;
+    width: 140px;
+    line-height: 30px;
+    border: 1px solid #fff;
+    color: #fff;
+    background-color: #333;
+    text-align: center;
+}
+
+#skip a:active,
+#skip a:focus {
+    top: 0;
+}
+
 /* 레이아웃 */
 #mNav {
     display: none;
@@ -853,6 +876,15 @@
     white-space: nowrap;
     padding-top: 3px;
     color: #777;
+}
+
+.notice ul li ul li a {
+    border: 0;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* 카드할인 */

@@ -1,0 +1,41 @@
+공지사항 탭메뉴 스크립트 
+
+var tabMenu = $(".notice");  //공지사항 게시판 영역을 tabMenu라는 변수에 다음
+
+//컨텐츠 내용을 숨김
+tabMenu.find("ul>li>ul").hide();  // 탭메뉴에서 ul>li>ul 을 찾아서 숨겨라
+tabMenu.find("li.active>ul").show(); // li에 active 클래스가붙어있는 ul만 보여주어라
+
+//함수생성
+
+function tabList(e) {
+    e.preventDefault(); // #의기능을 차단
+    var targt = $(this); // 사용자가 클릭한 것을 this로 받아서 target 변수에담음
+    target.next().show().parent("li").addClass("active").siblings("li").removeClass("active").find("ul").hide();
+    // 현재타켓에는 ul>li>a 태그가 담겨있고 a태그 next(형제)에 ul태그를 보여주고 부모 li에 active클래스를 추가하며
+    형제 li에 active 클래스를 지워주고 li의 자식인 ul태그를 찾아서 감추라는 뜻임
+}
+
+tabMenu.find("ul>li>a").click(tabList).focus(tabList); // notice 의 ul li a를 찾아서 클릭하면 tablist함수를 실행하고 
+ 접근성을 지키기위해  focus함수를 주면된다
+ focus함수는
+ 전체공지가 클릭되면 그밑의 li로 내려갔다가 영화관 공지로 넘어간다음 다시 li로 내려가게 하기위해서 썼다.
+ 즉 탭을눌렀을때의 focus 를 주는것이다.  (접근성을 위해 많이씀)
+
+ --------------------------------------------------------------------------------------------------------------------------
+
+ 스킵 메뉴 만들기 (스킵메뉴란 탭을눌렀을때 빠르게 다른 content로 넘어가기 위해서 많이씀)
+ 
+
+ 1. 구조를 짠다
+<div id="skip">
+    <a rel="bookmark" href="#movie">최신영화 소식</a>
+    <a rel="bookmark" href="#event">새로운 이벤트</a>
+    <a rel="bookmark" href="#new">새로운 영화</a>
+    <a rel="bookmark" href="#help">고객편의사항</a>
+</div>
+
+
+href 링크로 중요한 content 부분을 넣어주면된다 
+
+2. css를 짠다 (skip 메뉴를 안보이게 위로 올렸다가 active나 focus 됐을때 제자리로 돌리게 짜주면된다.)
