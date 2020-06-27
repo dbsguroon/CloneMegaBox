@@ -1,5 +1,8 @@
 (function ($) {
 
+    /* 트레일러 영상 플레이어를 활성화 */
+    /* YouTube iframe API: https://developers.google.com/youtube/player_parameters */
+
     (function handleTrailer() {
         // 셀렉터 캐시
         var $selector = {
@@ -31,7 +34,7 @@
         $selector.showButton.on("click", showPlayer);
         $selector.hideButton.on("click", hidePlayer);
 
-        //Youtube API를 이용해서 iframe을생성
+        // youutube API를  이용해 iframe을 생성
         function setPlayer(id) {
             player.obj = new YT.Player("trailer", {
                 width: 480,
@@ -47,6 +50,7 @@
             $(window).on("resize orientationchange", function () {
                 resizePlayer();
             });
+
         }
 
         // 화면 크기에 비례해 iframe의 크기 조절
@@ -69,6 +73,7 @@
             player.obj.setSize(frame.width, frame.height);
         }
 
+
         // iframe 보이기
         function showPlayer() {
             // 처음 클릭시 iframe을 생성 
@@ -88,20 +93,8 @@
             $selector.body.removeClass("modal_on");
             player.visible = false;
         }
-
     })();
 
 
+
 })(jQuery);
-
-
-
-
-
-
-
-
-
-
-/* 트레일러 영상 플레이어를 활성화 */
-/* YouTube iframe API: https://developers.google.com/youtube/player_parameters */

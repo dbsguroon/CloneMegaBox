@@ -1,0 +1,165 @@
+YOUTUBE API를 이용하기
+
+1. 구조를 짠다.
+
+<aside id="blackout" class="overlay">
+    <div id="trailermodal" class="modal">
+        <div id="trailer"></div>
+    </div>
+    <button id="hideTrailer" class="modal_close">닫기</button>
+</aside>
+
+참고로 id는 YOUTUBE를 컨트롤 하는 용도로 쓸것이며 class는 CSS를 적용해주기 위해서 만들었다.
+
+2. css를 짠다
+
+.overlay {  // 재생버튼을 눌렀을때 검은색바탕의 배경화면 만들기
+    background: rgba(0, 0, 0, 0.92);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    display: none;
+}
+
+.modal {   // youtube의 동영상의 위치값을 잡아주기 위해서
+    position: absolute;
+}
+
+.modal_close {  //닫기버튼
+    background: url(../img/close.svg) no-repeat;
+    background-size: 32px 32px;
+    border: 0;
+    color: transparent;
+    display: block;
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+    position: absolute; 
+    top: 24px;
+    right: 24px;
+    text-indent: 100%; 
+}
+
+body.modal_on { 재생버튼을 클릭했을때 바디를 감추어주게 해주는코드
+    overflow: hidden;
+}
+
+3. iframe api를 연동해준다.
+
+4. movie.js를 연동해준다.
+
+5. movie.js 스크립트를 짜준다.
+
+
+(function ($) {
+
+    /* 트레일러 영상 플레이어를 활성화 */
+    /* YouTube iframe API: https://developers.google.com/youtube/player_parameters */
+
+    (function handleTrailer() {
+        // 셀렉터 캐시            
+        var $selector = {         ---> 제이쿼리 변수로서 제이쿼리에서 사용하는 내장함수들을 모두 사용가능하며 {} 객체를 담고있음
+            body: $("body"),       
+            overlay: $("#blackout"),
+            modal: $("#trailerModal"),
+            showButton: $("#showTrailer"),
+            hideButton: $("#hideTrailer"),
+        };
+
+        // 플레이어
+        var player = {          ---> 플레이어 변수도 {} 객체를 만들어서 담고있음 
+            obj: null, // 플레이어 오브젝트
+            query: {             --> query 이부분은  https://developers.google.com/youtube/player_parameters  매개변수에대한 설명이 나와있음 (참고) 
+                theme: "dark",    // 테마
+                color: "white",  // 색깔
+                controls: 1,    // 동영상 컨트롤러 표시
+                autoplay: 1,    // 1이면 자동재생
+                enablejsapi: 1,  //1로설정하면 자바스크립트 API를 사용하도록 설정
+                modestbranding: 0, // YouTube 로고 감춤
+                rel: 0, // 관련 동영상 표시
+                showinfo: 0, // 제목, 업로더 감춤
+                iv_load_policy: 3 // 특수효과 감춤
+            },
+            visible: false       // 기본값으로 안보이게 해놨음
+        };
+
+        //보이기 , 숨기기 버튼 활성화
+        $selector.showButton.on("click", showPlayer);  showButton(즉재생버튼을) 클릭하면 showPlayer라는 함수가 실행됨
+        $selector.hideButton.on("click", hidePlayer);  hideButton(즉닫기버튼을) 클릭하면 hidePlayer 라는 함수가 실행됨
+
+        // youutube API를  이용해 iframe을 생성
+        function setPlayer(id) {      ---> 매개변수인 id 값은 동영상의 고유넘버라고 생각하면됨
+            player.obj = new YT.Player("trailer", {  --> 플레이어 오브젝트에 player 설정한 값을 담는것임 , 즉 플레이어 오브젝트에는 쿼리에대한 모든정보 뿐만 아니라 width , height , videoID 값도 담고있다고 보면됨
+                width: 480,      --> width값설정
+                height: 282,     --> height값설정
+                videoId: id,     --> 매개변수를 받아와서 videoId에 설정함
+                playerVars: player.query  --> 쿼리 객체에 있는 모든정보들을 playerVars에 담음
+            });
+
+            // 처음 플레이어 크기 설정
+            resizePlayer();
+
+            // 리사이즈나 화면 회전시 플레이어 크기 다시 설정
+            $(window).on("resize orientationchange", function () {   ---> 윈도우에서 창이 resize가 되거나 장치의 방향이 바뀔 때 resizePlayer() 함수를 호출하라는뜻임
+                resizePlayer();
+            });
+
+        }
+
+        // 화면 크기에 비례해 iframe의 크기 조절
+        function resizePlayer() {
+            var viewport = {},     --> viewport 객체설정
+                frame = {},       -->frame 객체설정
+                modal = {};       --> modal 객체설정
+
+            viewport.width = $(window).width();      //viewport 의 width 값은 현재 브라우저창의 width값에 맞춤
+            viewport.height = $(window).height();    //viewport 의 height 값은 현재 브라우저창의 height 값에 맞춤
+
+            frame.width = viewport.width;   // iframe 의 width 값은 viewport.wdith 값으로 넣어줌
+            frame.height = frame.width / 1.6; // iframe.width값을 1.6으로 나누어 높이는 전체width 값의 1.6 으로 나눈값의 높이를 유지
+
+            modal.top = ((viewport.height - frame.height) / 2) + "px";  // 전체높이에서 frame 높이만큼뺸후 2로 나눈 곳의 top 위치를 설정
+            modal.left = "0px";  // left 는 0으로 위치를 설정   
+
+            $selector.modal.css(modal);   --> 모달의 css 값으로 modal 객체를 넣어줌 ,모달객체에는 top값과 left 값이 들어있음
+
+            player.obj.setSize(frame.width, frame.height); --> player.obj 에 size를 설정하는데 iframe의 width값과 높이값을 넣어줌
+        }
+
+
+        // iframe 보이기
+        function showPlayer() {
+            // 처음 클릭시 iframe을 생성 
+            if (!player.obj) {   --> player.obj 가 넓값이 아니라면
+                setPlayer($selector.showButton.data("youtube"));  -->setPlayer에 동영상의 id 버튼을 가지고와서 넣어주라는 뜻임
+            }
+
+            $selector.body.addClass("modal_on");  --> body에 modal_on 이라는 클래스를 추가해준다 (이클래스에는 body 숨김기능이 들어가 있음)
+            $selector.overlay.show();    --> overlay 를 보여주고
+            player.visible = true;       --> 동영상 플레이어를 보이게 만들어라
+        }
+
+        // iframe 감추기
+        function hidePlayer() {
+            player.obj.stopVideo(); --> 플레이어 오브젝트에 비디어를 멈추게함
+            $selector.overlay.hide(); --> overlay를 숨기고
+            $selector.body.removeClass("modal_on");  --> body에 modal_on 클래스를 지워줌
+            player.visible = false;  --> 플레이어는 안보이게만듬
+        }
+    })();
+
+
+
+})(jQuery);  // jQuery를 읽고 시작하라는 뜻임
+
+
+----------------------------------------------------------------------------------------------------
+
+position 속성이 fixed인 경우, 컨테이닝 블록은 뷰포트나 페이지 영역(페이지로 나뉘는 매체인 경우)입니다.
+
+position 속성이 absolute인 경우, 컨테이닝 블록은 position 속성 값이 static이 아닌(fixed, absolute, relative, sticky) 가장 가까운 조상의 내부 여백 영역입니다.
+
+text-indent 를 써서 IR 효과처럼 글자를 영역바깥으로 내보낼수가 있음
